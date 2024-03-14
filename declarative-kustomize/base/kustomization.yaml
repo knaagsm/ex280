@@ -1,0 +1,17 @@
+kind: Kustomization
+secretGenerator:
+- literals:
+  - DB_ADMIN_PASSWORD=postgres
+  - DB_NAME=database
+  - DB_PASSWORD=newpassword
+  - DB_USER=user
+  name: db-secrets
+configMapGenerator:
+- literals:
+  - DB_HOST=database
+  - DB_PORT=5432
+  name: db-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+resources:
+- database
+- exoplanets
